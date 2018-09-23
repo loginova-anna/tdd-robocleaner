@@ -12,7 +12,6 @@ export function roboCleaner(n: number, coords: [number, number], steps: string[]
         cleanedArea += newPath.length - 1;
         currentPosition = newPosition;
     }
-
     return  cleanedArea;
 }
 
@@ -29,4 +28,8 @@ function getStepVector(step: string) {
 
 function vectorSum(a: number[], b: number[]): [number, number] {
     return [a[0] + b[0], a[1] + b[1]];
+}
+
+export function pathsIntersect(pathA: Path, pathB: Path): number {
+    return 0;
 }
