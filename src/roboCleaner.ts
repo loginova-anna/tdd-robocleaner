@@ -31,5 +31,5 @@ function vectorSum(a: number[], b: number[]): [number, number] {
 }
 
 export function pathsIntersect(pathA: Path, pathB: Path): number {
-    return 0;
+    return pathA.intersects(pathB);
 }
