@@ -3,13 +3,15 @@ import { Path } from "./path.class";
 export function roboCleaner(n: number, coords: [number, number], steps: string[]) {
     let currentPosition = coords,
         paths: Path[] = [],
-        cleanedArea = 1,
-        stepVectors = steps.map(el => getStepVector(el))
+        cleanedArea = 0,
+        stepVectors = steps.map(el => getStepVector(el)),
+        newPosition: [number, number],
+        newPath: Path;
     for (let i = 0; i < n; i++){
-        let newPosition = vectorSum(currentPosition, stepVectors[i]),
-            newPath = new Path(currentPosition, newPosition);
+        newPosition = vectorSum(currentPosition, stepVectors[i]);
+        newPath = new Path(currentPosition, newPosition);
+        cleanedArea += newPath.length - paths.reduce((sum, el) => sum + el.intersects(newPath), 0);
         paths.push(newPath);
-        cleanedArea += newPath.length - 1;
         currentPosition = newPosition;
     }
     return  cleanedArea;

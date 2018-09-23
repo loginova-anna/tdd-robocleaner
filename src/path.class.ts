@@ -8,6 +8,10 @@ export class Path {
     constructor([a, b], [c, d]) {
         this.start = {x: a, y: b};
         this.end = {x: c, y: d};
+        if ((a === c && b >= d) || (b === d && a >=c)) {
+            this.start = {x: c, y: d};
+            this.end = {x: a, y: b};
+        }
         this.length = Math.abs(this.start.x - this.end.x + this.start.y - this.end.y) + 1;
         this.isHorizontal = this.start.y === this.end.y ? true : false;
         this.onSameLine = function(p: Path): boolean {
