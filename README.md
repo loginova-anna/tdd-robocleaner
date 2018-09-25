@@ -5,10 +5,10 @@ Test task for Cint
 npm i
 
 # run tests
-npm run jest
+npm run test
 
 # build
 npm run build
 
-# open and proceed on some file
+# open and process some file
 npm run open your-file-name.txt
