@@ -1,6 +1,37 @@
+const fs = require('fs');
+
 import { Path } from "./path.class";
 
-export function roboCleaner(n: number, coords: [number, number], steps: string[]) {
+launch();
+
+function launch() {
+    let fileNames = getFileNames();
+    fileNames.forEach(fName => {
+        readFileContents(fName).then(inputData => {
+            let result = roboCleaner(inputData[0], inputData[1], inputData[2]);
+            console.log('=> Cleaned:', result);
+        });
+    })
+}
+
+function getFileNames() {
+    return process.argv.filter(el => el.indexOf('txt') > -1);
+}
+
+function readFileContents(filename: string): Promise<any> {
+    return new Promise((res, rej) => {
+        fs.readFile(filename, 'utf8', function(err: Error, data: string) {  
+            if (err) rej(err);
+            let dataArr = data.split('\n');
+            let n = +dataArr[0];
+            let coords = dataArr[1].split(' ').map(el => +el);
+            let steps = dataArr.slice(2, dataArr.length);
+            res([n, coords, steps]);
+        });
+    }) 
+}
+
+export function roboCleaner(n: number, coords: [number, number], steps: string[]): number {
   let currentPosition = coords,
       paths: Path[] = [],
       cleanedArea = 0,
@@ -17,7 +48,6 @@ export function roboCleaner(n: number, coords: [number, number], steps: string[]
   }
   return  cleanedArea;
 }
-
 
 function merge(newPath: Path, paths: Path[]): [number, Path[]] {
   let mergedPath = newPath,

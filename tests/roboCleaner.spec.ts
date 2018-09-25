@@ -1,6 +1,6 @@
 /// <reference types='jest' />
-import {roboCleaner, pathsIntersect} from './roboCleaner';
-import { Path } from './path.class';
+import {roboCleaner, pathsIntersect} from '../src/roboCleaner';
+import { Path } from '../src/path.class';
 
 test('RoboCleaner no crosses', () => {
     expect(roboCleaner(2, [10, 10], ['N 2', 'E 1'])).toBe(4);
@@ -74,7 +74,6 @@ test('Robocleaner highload brush', () => {
         steps.push(newStep);
          j = j === 3 ? 1 : j + 1;
     }
-    // console.log(steps.slice(0, 20));
     j = 1;
     for (i = 0; i < 4000; i++) {
         newStep = j === 1 ? 'E 2' : 

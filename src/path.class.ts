@@ -6,7 +6,7 @@ export class Path {
   onSameLine: Function;
   intersects: Function;
   extend: Function;
-  constructor([a, b], [c, d]) {
+  constructor([a, b]: [number, number], [c, d]: [number, number]) {
     this.start = {x: a, y: b};
     this.end = {x: c, y: d};
     if ((a === c && b >= d) || (b === d && a >=c)) {
